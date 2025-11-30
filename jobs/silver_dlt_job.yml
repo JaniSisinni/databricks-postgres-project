@@ -1,0 +1,27 @@
+resources:
+  pipelines:
+    silver_dlt_pipeline:
+      name: "silver_dlt_pipeline"
+      storage: "gs://products-dev-silver/_dlt_storage"
+      target: ""
+      continuous: false
+      photon: false
+      edition: "core"
+      configuration:
+        "pipeline.trigger.interval": "24h"
+
+  jobs:
+    silver_dlt_job:
+      name: "silver_dlt_job"
+      email_notifications:
+        on_failure:
+          - "user@company.de"
+        on_success:
+          - "user@company.de"
+      schedule:
+        quartz_cron_expression: "0 15 6 * * ?"   
+        timezone_id: "Europe/Berlin"
+      tasks:
+        - task_key: run_dlt
+          pipeline_task:
+            pipeline_id: "${resources.pipelines.silver_dlt_pipeline.id}"

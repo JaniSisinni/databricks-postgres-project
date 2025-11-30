@@ -1,0 +1,51 @@
+name: Databricks Bundle Deployment
+
+on:
+  push:
+    branches: [ "main" ]
+    paths:
+      - "notebooks/**"
+      - "jobs/**"
+      - "src/**"
+      - "config/**"
+      - "databricks.yml"
+  pull_request:
+    branches: [ "main" ]
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Databricks CLI
+        run: |
+          curl -fsSL https://raw.githubusercontent.com/databricks/setup-cli/main/install.sh | sh
+
+      - name: Authenticate to GCP via OIDC
+        id: auth
+        uses: google-github-actions/auth@v2
+        with:
+          workload_identity_provider: "projects/831778808547/locations/global/workloadIdentityPools/github-pool/providers/github-provider"
+          service_account: "magenta-dataflow-account@buoyant-notch-419015.iam.gserviceaccount.com"
+
+      - name: Set Databricks Host
+        run: |
+          databricks configure --host ${{ secrets.DATABRICKS_HOST }} --token ${{ secrets.DATABRICKS_PAT }}
+
+      - name: Validate bundle
+        run: databricks bundle validate --profile default
+
+      - name: Deploy bundle
+        if: github.ref == 'refs/heads/main'
+        run: databricks bundle deploy --profile default
+
+      - name: Restart DLT pipeline
+        if: github.ref == 'refs/heads/main'
+        run: databricks pipelines start --pipeline-id "$(databricks pipelines get --output json | jq -r '.[] | select(.name=="silver_dlt_pipeline") | .pipeline_id')"

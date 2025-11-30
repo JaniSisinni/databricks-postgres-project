@@ -1,0 +1,14 @@
+pipeline:
+  name: "silver_dlt_pipeline"
+  edition: "core"   
+  storage_location: "gs://products-dev-silver/_dlt_storage"
+  configuration:
+    "spark.sql.shuffle.partitions": "200"
+    "pipeline.trigger.interval": "24h" # daily run
+  clusters:
+    - label: "default"
+      num_workers: 1
+      node_type_id: "n1-standard-4"
+      spark_version: "16.4.x-scala2.12"
+      init_scripts:
+        - dbfs:/databricks/init/cloud_sql_proxy.sh

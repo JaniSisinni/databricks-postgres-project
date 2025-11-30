@@ -1,0 +1,6 @@
+pyspark==3.5.0
+google-auth
+google-cloud-secret-manager
+google-cloud-storage
+databricks-cli
+pyyaml

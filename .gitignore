@@ -1,0 +1,35 @@
+# Python
+*.pyc
+__pycache__/
+*.pyo
+*.pyd
+*.egg-info/
+
+# Databricks
+.databricks/
+*.dbc
+dbfs:/databricks/init/*
+workspace.json
+
+# Terraform
+.terraform/
+.terraform.lock.hcl
+terraform.tfstate
+terraform.tfstate.backup
+*.tfvars
+*.tfvars.json
+
+# Logs
+*.log
+
+# IDEs
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Bundles
+bundle/
+bundle-artifacts/

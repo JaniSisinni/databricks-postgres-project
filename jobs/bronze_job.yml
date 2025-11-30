@@ -1,0 +1,28 @@
+resources:
+  jobs:
+    bronze_ingest_job:
+      name: bronze_ingest_job
+      email_notifications:
+        on_success:
+          - "user@company.de"
+        on_failure:
+          - "user@company.de"
+      schedule:
+        quartz_cron_expression: "0 0 6 * * ?"   # every day at 06:00
+        timezone_id: "Europe/Berlin"
+      tasks:
+        - task_key: bronze_ingestion
+          description: "Ingest products, customers, purchases from Cloud SQL"
+          spark_python_task:
+            python_file: "notebooks/bronze/bronze_ingest.py"
+          job_cluster_key: bronze_cluster
+
+      job_clusters:
+        - job_cluster_key: bronze_cluster
+          new_cluster:
+            spark_version: "16.4.x-scala2.12"
+            node_type_id: "n1-standard-4"
+            num_workers: 1
+            init_scripts:
+              - dbfs:
+                  destination: "dbfs:/databricks/init/cloud_sql_proxy.sh"

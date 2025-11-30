@@ -1,0 +1,16 @@
+source:
+  db_name: "bautchope"
+  jdbc_host: "192.0.0.1"
+  jdbc_port: "30999"
+  tables:
+    - "products"
+    - "customers"
+    - "purchases"
+
+gcs:
+  bronze_bucket: "gs://products-dev-bronze"
+
+secrets:
+  scope: "gcp-cloudsql-secrets"
+
+checkpoint_path: "dbfs:/bronze_checkpoints"
