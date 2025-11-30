@@ -46,6 +46,12 @@ jobs:
         if: github.ref == 'refs/heads/main'
         run: databricks bundle deploy --profile default
 
+      - name: Run Silver DQA SQL Tests
+        run: |
+          databricks sql execute --file dqa/silver/test_dlt_config_expectations.sql
+          databricks sql execute --file dqa/silver/test_silver_business_rules.sql
+          databricks sql execute --file dqa/silver/test_schema_validation.sql
+
       - name: Restart DLT pipeline
         if: github.ref == 'refs/heads/main'
         run: databricks pipelines start --pipeline-id "$(databricks pipelines get --output json | jq -r '.[] | select(.name=="silver_dlt_pipeline") | .pipeline_id')"

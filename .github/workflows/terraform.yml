@@ -43,6 +43,13 @@ jobs:
         working-directory: ./terraform
         run: terraform validate
 
+      - name: Run Bronze Unit Tests
+        working-directory: ./utest/bronze
+        run: |
+          pip install pyspark pytest
+          pip install -r requirements.txt
+          pytest utest/bronze -q
+
       - name: Terraform Plan
         if: github.event_name == 'pull_request'
         working-directory: ./terraform

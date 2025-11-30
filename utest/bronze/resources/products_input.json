@@ -1,0 +1,9 @@
+[
+  { "id": 78556, "sale_num": 10, "product_name": "pullover", "quantity": 3 },
+  { "id": 89552, "sale_num": 11, "product_name": "boots", "quantity": 0 },
+  { "id": 68223, "sale_num": 12, "product_name": "shorts", "quantity": 5 },
+  { "id": 85779, "sale_num": 13, "product_name": "jacket", "quantity": 2 },
+  { "id": 55322, "sale_num": 14, "product_name": "t-shirt", "quantity": 8 },
+  { "id": 15678, "sale_num": 15, "product_name": "sneakers", "quantity": 1 },
+  { "id": 89557, "sale_num": 16, "product_name": "sandals", "quantity": 4 }
+]

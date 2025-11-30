@@ -1,0 +1,9 @@
+[
+  { "id": 200, "sale_num": 10, "purchase_number": 77, "product_name": "shoes" },
+    { "id": 201, "sale_num": 11, "purchase_number": 78, "product_name": "boots" },
+    { "id": 202, "sale_num": 12, "purchase_number": 79, "product_name": "hat" },
+    { "id": 203, "sale_num": 13, "purchase_number": 80, "product_name": "jacket" },
+    { "id": 204, "sale_num": 14, "purchase_number": 81, "product_name": "t-shirt" },
+    { "id": 205, "sale_num": 15, "purchase_number": 82, "product_name": "sneakers" },
+    { "id": 206, "sale_num": 16, "purchase_number": 83, "product_name": "sandals" }
+]

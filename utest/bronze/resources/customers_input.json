@@ -1,0 +1,9 @@
+[
+  { "id": 100, "sale_num": 10, "customer_name": "John", "customer_id": 5, "customer_account": "X100" },
+    { "id": 101, "sale_num": 11, "customer_name": "Alice", "customer_id": 6, "customer_account": "X101" },
+    { "id": 102, "sale_num": 12, "customer_name": "Bob", "customer_id": 7, "customer_account": "X102" },
+    { "id": 103, "sale_num": 13, "customer_name": "Eve", "customer_id": 8, "customer_account": "X103" },
+    { "id": 104, "sale_num": 14, "customer_name": "Charlie", "customer_id": 9, "customer_account": "X104" },
+    { "id": 105, "sale_num": 15, "customer_name": "David", "customer_id": 10, "customer_account": "X105" },
+    { "id": 106, "sale_num": 16, "customer_name": "Faythe", "customer_id": 11, "customer_account": "X106" }
+]
